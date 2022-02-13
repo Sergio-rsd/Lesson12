@@ -26,7 +26,6 @@ import ru.gb.lesson12.recycler.NotesAdapter;
 public class ListFragment extends Fragment
 
 {
-    private static final String NOTES_SAVE = "NOTES_SAVE";
     private Repo repository = InMemoryRepoImpl.getInstance();
     private NotesAdapter adapter = new NotesAdapter();
     RecyclerView listAdapter;

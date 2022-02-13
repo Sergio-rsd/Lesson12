@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity
     public static final String ABOUT = "ABOUT";
 
     public static final String NOTES_SAVE = "NOTES_SAVE";
-    public SharedPreferences prefs;
-    public Gson gson = new Gson();
 
     ListFragment listNotes;
 
@@ -51,15 +49,6 @@ public class MainActivity extends AppCompatActivity
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-/*
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String savesNotes = prefs.getString(NOTES_SAVE, "");
-
-
-        if (savesNotes == null) {
-            repository.getAll();
-        }
- */
 
         SharedPref.init(this);
         String savesNotes = SharedPref.read(NOTES_SAVE, "");
@@ -69,9 +58,6 @@ public class MainActivity extends AppCompatActivity
             repository.readPref(savesNotes);
             repository.getAll();
         }
-
-//        prefs = getPreferences(MODE_PRIVATE);
-//        repository.readPref();
 
         initToolbarAndDrawer();
         ListFragment listNoteFragment = (ListFragment) getSupportFragmentManager().findFragmentByTag(LIST_FRAGMENT);
