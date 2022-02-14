@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lesson12</string>
+    <string name="app_name">Notes</string>
     <string name="update_note">Update note</string>
     <string name="change_data">Change data</string>
     <string name="create">Create</string>

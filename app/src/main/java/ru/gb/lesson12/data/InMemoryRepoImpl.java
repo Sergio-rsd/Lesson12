@@ -28,8 +28,10 @@ public class InMemoryRepoImpl implements Repo {
 
     @Override
     public List<Note> readPref(String notesString) {
-        Type type =  new TypeToken<List<Note>>() {}.getType();
+        Type type = new TypeToken<List<Note>>() {
+        }.getType();
         notes = new GsonBuilder().create().fromJson(notesString, type);
+        counter = readCounter(notes);
         return notes;
     }
 
@@ -65,7 +67,7 @@ public class InMemoryRepoImpl implements Repo {
     @Override
     public void update(Note note) {
         for (int i = 0; i < notes.size(); i++) {
-            if (notes.get(i).getId() == note.getId()) {
+            if (notes.get(i).getId().equals(note.getId())) {
                 notes.set(i, note);
                 break;
             }
@@ -85,5 +87,20 @@ public class InMemoryRepoImpl implements Repo {
     @Override
     public List<Note> getAll() {
         return notes;
+    }
+
+    @Override
+    public int readCounter(List<Note> notes) {
+        if (notes == null) {
+            this.notes = new ArrayList<>();
+            counter = 0;
+        } else {
+            if (notes.size() == 0) {
+                counter = 0;
+            } else {
+                counter = notes.get(notes.size() - 1).getId();
+            }
+        }
+        return counter;
     }
 }

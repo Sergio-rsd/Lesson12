@@ -17,4 +17,5 @@ public interface Repo {
     void writePref(List<Note> notes);
     List<Note> readPref(String notesString);
     List<Note> getAll();
+    int readCounter(List<Note> notes);
 }

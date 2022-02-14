@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity
     public static final String ABOUT = "ABOUT";
 
     public static final String NOTES_SAVE = "NOTES_SAVE";
+    private Gson gson = new Gson();
 
     ListFragment listNotes;
 
@@ -52,12 +53,10 @@ public class MainActivity extends AppCompatActivity
 
         SharedPref.init(this);
         String savesNotes = SharedPref.read(NOTES_SAVE, "");
-        if (savesNotes == null) {
-            repository.getAll();
-        } else {
+        if (savesNotes != null) {
             repository.readPref(savesNotes);
-            repository.getAll();
         }
+        repository.getAll();
 
         initToolbarAndDrawer();
         ListFragment listNoteFragment = (ListFragment) getSupportFragmentManager().findFragmentByTag(LIST_FRAGMENT);

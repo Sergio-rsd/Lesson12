@@ -92,7 +92,7 @@ public class NoteDialog extends DialogFragment {
                 note.setDataPerformance("");
             }
             currentDateTime.setText(note.getDataPerformance());
-            setInitialDate();
+//            setInitialDate();
 
             selectSaved = note.getInterest();
             for (int i = 0; i < arrayInterest.length; i++) {

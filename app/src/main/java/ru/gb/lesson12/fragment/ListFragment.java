@@ -32,6 +32,7 @@ public class ListFragment extends Fragment
     private Note note;
 
     private SharedPreferences prefs;
+    public static final String NOTES_SAVE = "NOTES_SAVE";
 
     public interface RecyclerController {
         void connect();
@@ -101,7 +102,6 @@ public class ListFragment extends Fragment
     }
 
     public void delete(Note note, int position) {
-
         repository.delete(note.getId());
         adapter.delete(repository.getAll(), position);
     }
