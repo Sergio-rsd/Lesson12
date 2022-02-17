@@ -40,6 +40,13 @@
                 android:textSize="20sp"
                 tools:text="Description" />
 
+            <TextView
+                android:id="@+id/note_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                tools:text="ID note" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -53,8 +60,8 @@
                 android:id="@+id/interest_currency"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:textSize="15sp"
+                android:textStyle="bold"
                 tools:text="Важность" />
 
             <Space
@@ -66,8 +73,8 @@
                 android:id="@+id/data_stamp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:textSize="14sp"
+                android:textStyle="bold"
                 tools:text="дата" />
 
         </LinearLayout>
