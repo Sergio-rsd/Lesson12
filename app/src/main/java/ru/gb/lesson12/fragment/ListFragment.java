@@ -1,7 +1,9 @@
 package ru.gb.lesson12.fragment;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +26,13 @@ import ru.gb.lesson12.recycler.NotesAdapter;
 public class ListFragment extends Fragment
 
 {
-
     private Repo repository = InMemoryRepoImpl.getInstance();
     private NotesAdapter adapter = new NotesAdapter();
     RecyclerView listAdapter;
     private Note note;
+
+    private SharedPreferences prefs;
+    public static final String NOTES_SAVE = "NOTES_SAVE";
 
     public interface RecyclerController {
         void connect();
@@ -39,6 +43,7 @@ public class ListFragment extends Fragment
     @Override
     public void onAttach(@NonNull Context context) {
         this.recyclerController = (RecyclerController) context;
+        prefs = PreferenceManager.getDefaultSharedPreferences(context);
         super.onAttach(context);
     }
 
@@ -86,7 +91,6 @@ public class ListFragment extends Fragment
                 Note note = holder.getNote();
                 repository.delete(note.getId());
                 adapter.delete(repository.getAll(), position);
-
             }
         });
         helper.attachToRecyclerView(listAdapter);
@@ -98,7 +102,6 @@ public class ListFragment extends Fragment
     }
 
     public void delete(Note note, int position) {
-
         repository.delete(note.getId());
         adapter.delete(repository.getAll(), position);
     }

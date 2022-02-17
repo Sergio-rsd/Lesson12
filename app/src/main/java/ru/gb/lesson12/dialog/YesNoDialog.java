@@ -26,19 +26,11 @@ public class YesNoDialog extends DialogFragment {
         builder.setView(dialogView);
         builder.setCancelable(true);
 
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int which) {
-                dialogInterface.cancel();
-            }
-        });
+        builder.setNegativeButton("No", (dialogInterface, which) -> dialogInterface.cancel());
 
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                ((YesNoDialogController)requireContext()).createAnswer();
-                dialog.dismiss();
-            }
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            ((YesNoDialogController)requireContext()).createAnswer();
+            dialog.dismiss();
         });
 
         return builder.create();

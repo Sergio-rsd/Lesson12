@@ -1,5 +1,6 @@
 package ru.gb.lesson12.ui;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,19 +9,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
-
-import androidx.appcompat.widget.Toolbar;
-
+import com.google.gson.Gson;
 
 import ru.gb.lesson12.R;
 import ru.gb.lesson12.data.InMemoryRepoImpl;
 import ru.gb.lesson12.data.Note;
 import ru.gb.lesson12.data.PopupMenuClick;
 import ru.gb.lesson12.data.Repo;
+import ru.gb.lesson12.data.SharedPref;
 import ru.gb.lesson12.data.YesNoDialogController;
 import ru.gb.lesson12.dialog.NoteDialog;
 import ru.gb.lesson12.dialog.YesNoDialog;
@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity
     public static final String LIST_FRAGMENT = "LIST_FRAGMENT";
     public static final String ABOUT = "ABOUT";
 
+    public static final String NOTES_SAVE = "NOTES_SAVE";
+    private Gson gson = new Gson();
+
     ListFragment listNotes;
 
     private Note note;
@@ -48,9 +51,15 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SharedPref.init(this);
+        String savesNotes = SharedPref.read(NOTES_SAVE, "");
+        if (savesNotes != null) {
+            repository.readPref(savesNotes);
+        }
+        repository.getAll();
+
         initToolbarAndDrawer();
         ListFragment listNoteFragment = (ListFragment) getSupportFragmentManager().findFragmentByTag(LIST_FRAGMENT);
-
 
         if (listNoteFragment == null) {
             listNotes = new ListFragment();
@@ -129,16 +138,12 @@ public class MainActivity extends AppCompatActivity
         switch (command) {
             case R.id.context_delete:
                 listNotes.delete(note, position);
-
-
                 return;
             case R.id.context_modify:
                 NoteDialog.getInstance(note).show(
                         getSupportFragmentManager(),
                         NoteDialog.NOTE
                 );
-
-                return;
         }
     }
 
@@ -154,7 +159,6 @@ public class MainActivity extends AppCompatActivity
         listNotes.create(note);
 
     }
-
 
     @Override
     public void onBackPressed() {
@@ -182,4 +186,10 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SharedPref.init(getApplicationContext());
+        repository.writePref(repository.getAll());
+    }
 }

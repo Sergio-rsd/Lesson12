@@ -24,7 +24,6 @@ public class NoteHolder extends RecyclerView.ViewHolder implements PopupMenu.OnM
     private PopupMenu popupMenu;
     private PopupMenuClick listener;
 
-
     public NoteHolder(@NonNull View itemView, PopupMenuClick listener) {
         super(itemView);
         this.listener = listener;

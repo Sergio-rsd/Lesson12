@@ -1,5 +1,6 @@
 package ru.gb.lesson12.recycler;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NoteHolder> {
         notifyItemRemoved(position);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setNotes(List<Note> notes) {
         this.notes = notes;
         notifyDataSetChanged();
