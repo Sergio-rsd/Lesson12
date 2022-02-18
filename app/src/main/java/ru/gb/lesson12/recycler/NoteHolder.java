@@ -48,7 +48,6 @@ public class NoteHolder extends RecyclerView.ViewHolder implements PopupMenu.OnM
     void bind(Note note) {
         this.note = note;
 //        id.setText(note.getId().toString());
-        id.setText(note.getId().toString());
         title.setText(note.getTitle());
         description.setText(note.getDescription());
         interest.setText(note.getInterest());

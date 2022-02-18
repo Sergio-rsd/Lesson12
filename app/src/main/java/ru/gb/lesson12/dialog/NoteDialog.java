@@ -34,7 +34,7 @@ public class NoteDialog extends DialogFragment {
     private Note note;
     private String[] arrayInterest;
     private String selectSaved;
-    public static final String TAG = "happy";
+//    public static final String TAG = "happy";
     private String interest = "";
     private int id_note;
 
@@ -153,10 +153,9 @@ public class NoteDialog extends DialogFragment {
                     if (note == null) {
                         interest = spinner.getSelectedItem().toString();
                         setInitialDate();
-//                        id_note = repository.readCounter(repository.getAll());
-                        Log.d(TAG, "Total notes: " + repository.getAll().size());
+//                        Log.d(TAG, "Total notes: " + repository.getAll().size());
                         id_note = repository.getAll().size();
-                        Log.d(TAG, "ID new: " + id_note);
+//                        Log.d(TAG, "ID new: " + id_note);
 
                         controller.create(
                                 id_note,
@@ -166,7 +165,7 @@ public class NoteDialog extends DialogFragment {
                                 currentDateTime.getText().toString()
                         );
                     } else {
-                        Log.d(TAG, "ID update: " + note.getId());
+//                        Log.d(TAG, "ID update: " + note.getId());
                         note.setId(note.getId());
                         note.setTitle(dialogTitle.getText().toString());
                         note.setDescription(dialogDescription.getText().toString());

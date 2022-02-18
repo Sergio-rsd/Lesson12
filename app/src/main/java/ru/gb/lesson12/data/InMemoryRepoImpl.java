@@ -1,5 +1,7 @@
 package ru.gb.lesson12.data;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -13,7 +15,7 @@ public class InMemoryRepoImpl implements Repo {
     private static final String NOTES_SAVE = "NOTES_SAVE";
     private ArrayList<Note> notes = new ArrayList<>();
     private int counter = 0;
-
+//    public static final String TAG = "happy";
     private static Gson gson = new Gson();
 
     // singleton для базы
@@ -37,7 +39,6 @@ public class InMemoryRepoImpl implements Repo {
 
     @Override
     public void writePref(List<Note> notes) {
-
         String listNotes = gson.toJson(notes);
         SharedPref.write(NOTES_SAVE, listNotes);
 
@@ -82,6 +83,12 @@ public class InMemoryRepoImpl implements Repo {
                 break;
             }
         }
+        int j = 0;
+        for (Note singleNote : notes) {
+            singleNote.setId(j);
+//            Log.d(TAG, "Note id: " + notes.get(j).getId() );
+            j++;
+        }
     }
 
     @Override
@@ -98,7 +105,8 @@ public class InMemoryRepoImpl implements Repo {
             if (notes.size() == 0) {
                 counter = 0;
             } else {
-                counter = notes.get(notes.size() - 1).getId();
+//                counter = notes.get(notes.size() - 1).getId();
+                counter = notes.size() - 1;
             }
         }
         return counter;
