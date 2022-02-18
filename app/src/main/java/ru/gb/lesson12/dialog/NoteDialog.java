@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,22 +23,27 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import ru.gb.lesson12.R;
+import ru.gb.lesson12.data.InMemoryRepoImpl;
 import ru.gb.lesson12.data.Note;
+import ru.gb.lesson12.data.Repo;
 
 public class NoteDialog extends DialogFragment {
 
     public static final String NOTE = "NOTE";
+    private Repo repository = InMemoryRepoImpl.getInstance();
     private Note note;
     private String[] arrayInterest;
     private String selectSaved;
-//    public static final String TAG = "happy";
+    public static final String TAG = "happy";
     private String interest = "";
+    private int id_note;
+
     private TextView currentDateTime;
     Calendar dataChoice = Calendar.getInstance();
 
     public interface NoteDialogController {
         void update(Note note);
-        void create(String title, String description, String interest, String data);
+        void create(int id, String title, String description, String interest, String data);
 
     }
 
@@ -85,6 +91,7 @@ public class NoteDialog extends DialogFragment {
         currentDateTime = dialog.findViewById(R.id.current_date);
 
         if (note != null) {
+            id_note = note.getId();
             title = note.getTitle();
             description = note.getDescription();
 
@@ -137,6 +144,8 @@ public class NoteDialog extends DialogFragment {
             builder.setTitle("Modify note");
         }
 
+//        id_note = repository.readCounter(repository.getAll());
+
         builder.setView(dialog)
                 .setCancelable(true)
                 .setNegativeButton("Cancel", (dialogInterface, which) -> dialogInterface.cancel())
@@ -144,13 +153,21 @@ public class NoteDialog extends DialogFragment {
                     if (note == null) {
                         interest = spinner.getSelectedItem().toString();
                         setInitialDate();
+//                        id_note = repository.readCounter(repository.getAll());
+                        Log.d(TAG, "Total notes: " + repository.getAll().size());
+                        id_note = repository.getAll().size();
+                        Log.d(TAG, "ID new: " + id_note);
+
                         controller.create(
+                                id_note,
                                 dialogTitle.getText().toString(),
                                 dialogDescription.getText().toString(),
                                 interest,
                                 currentDateTime.getText().toString()
                         );
                     } else {
+                        Log.d(TAG, "ID update: " + note.getId());
+                        note.setId(note.getId());
                         note.setTitle(dialogTitle.getText().toString());
                         note.setDescription(dialogDescription.getText().toString());
                         note.setInterest(interest);

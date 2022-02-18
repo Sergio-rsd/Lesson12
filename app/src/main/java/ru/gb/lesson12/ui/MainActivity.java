@@ -154,8 +154,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void create(String title, String description, String interest, String dataPerformance) {
-        Note note = new Note(title, description, interest, dataPerformance);
+    public void create(int id,String title, String description, String interest, String dataPerformance) {
+        Note note = new Note(id, title, description, interest, dataPerformance);
         listNotes.create(note);
 
     }

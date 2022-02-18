@@ -34,6 +34,10 @@ public class Note implements Serializable {
         return id;
     }
 
+/*    public int setId(Integer id) {
+        this.id = id;
+        return id;
+    }*/
     public void setId(Integer id) {
         this.id = id;
     }

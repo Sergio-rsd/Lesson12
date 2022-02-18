@@ -1,5 +1,6 @@
 package ru.gb.lesson12.recycler;
 
+import android.annotation.SuppressLint;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,7 +15,7 @@ import ru.gb.lesson12.data.Note;
 import ru.gb.lesson12.data.PopupMenuClick;
 
 public class NoteHolder extends RecyclerView.ViewHolder implements PopupMenu.OnMenuItemClickListener {
-
+    private TextView id;
     private TextView title;
     private TextView description;
     private TextView interest;
@@ -28,6 +29,7 @@ public class NoteHolder extends RecyclerView.ViewHolder implements PopupMenu.OnM
         super(itemView);
         this.listener = listener;
 
+        id = itemView.findViewById(R.id.note_id);
         title = itemView.findViewById(R.id.note_title);
         description = itemView.findViewById(R.id.note_description);
         interest = itemView.findViewById(R.id.interest_currency);
@@ -42,8 +44,11 @@ public class NoteHolder extends RecyclerView.ViewHolder implements PopupMenu.OnM
 
     }
 
+    @SuppressLint("SetTextI18n")
     void bind(Note note) {
         this.note = note;
+//        id.setText(note.getId().toString());
+        id.setText(note.getId().toString());
         title.setText(note.getTitle());
         description.setText(note.getDescription());
         interest.setText(note.getInterest());
