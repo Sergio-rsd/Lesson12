@@ -76,7 +76,8 @@ class ListFragment : Fragment() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.adapterPosition
+//                val position = viewHolder.adapterPosition
+                val position = viewHolder.bindingAdapterPosition
                 val holder = viewHolder as NoteHolder
                 val note = holder.note
                 note!!.id?.let { repository.delete(it) }

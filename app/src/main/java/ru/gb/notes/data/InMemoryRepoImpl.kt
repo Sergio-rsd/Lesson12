@@ -5,7 +5,6 @@ import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import ru.gb.notes.data.SharedPref.write
 
-//class InMemoryRepoImpl private constructor() : Repo {
 class InMemoryRepoImpl : Repo {
     private var notes = ArrayList<Note?>()
     private var counter = 0

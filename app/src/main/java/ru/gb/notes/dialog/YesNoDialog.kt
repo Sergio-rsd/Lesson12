@@ -2,11 +2,11 @@ package ru.gb.notes.dialog
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
-import ru.gb.notes.R
-import android.content.DialogInterface
 import androidx.fragment.app.DialogFragment
+import ru.gb.notes.R
 import ru.gb.notes.data.YesNoDialogController
 
 class YesNoDialog : DialogFragment() {
@@ -15,8 +15,8 @@ class YesNoDialog : DialogFragment() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setView(dialogView)
         builder.setCancelable(true)
-        builder.setNegativeButton("No") { dialogInterface: DialogInterface, which: Int -> dialogInterface.cancel() }
-        builder.setPositiveButton("Yes") { dialog: DialogInterface, which: Int ->
+        builder.setNegativeButton("No") { dialogInterface: DialogInterface, _: Int -> dialogInterface.cancel() }
+        builder.setPositiveButton("Yes") { dialog: DialogInterface, _: Int ->
             (requireContext() as YesNoDialogController).createAnswer()
             dialog.dismiss()
         }

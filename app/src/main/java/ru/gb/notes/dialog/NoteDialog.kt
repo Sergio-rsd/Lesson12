@@ -25,7 +25,7 @@ class NoteDialog : DialogFragment() {
 
     //    public static final String TAG = "happy";
     private var interest = ""
-    private var id_note = 0
+    private var idNote = 0
     private lateinit var currentDateTime: TextView
     private var dataChoice: Calendar = Calendar.getInstance()
 
@@ -64,7 +64,7 @@ class NoteDialog : DialogFragment() {
         // Spinner end
         currentDateTime = dialog.findViewById(R.id.current_date)
         if (note != null) {
-            id_note = note!!.id!!
+            idNote = note!!.id!!
             title = note!!.title
             description = note!!.description
             if (note!!.dataPerformance == null) {
@@ -118,10 +118,10 @@ class NoteDialog : DialogFragment() {
                     interest = spinner.selectedItem.toString()
                     setInitialDate()
                     //                        Log.d(TAG, "Total notes: " + repository.getAll().size());
-                    id_note = repository?.all!!.size
+                    idNote = repository?.all!!.size
                     //                        Log.d(TAG, "ID new: " + id_note);
                     controller.create(
-                        id_note,
+                        idNote,
                         dialogTitle.text.toString(),
                         dialogDescription.text.toString(),
                         interest,
