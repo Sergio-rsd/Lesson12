@@ -1,11 +1,11 @@
-package ru.gb.notes.recycler
+package ru.gb.notes.ui.recycler
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.gb.notes.R
-import ru.gb.notes.data.Note
+import ru.gb.notes.domain.Note
 import ru.gb.notes.data.PopupMenuClick
 
 class NotesAdapter : RecyclerView.Adapter<NoteHolder>() {

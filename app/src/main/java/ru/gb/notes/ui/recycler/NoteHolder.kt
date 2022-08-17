@@ -1,4 +1,4 @@
-package ru.gb.notes.recycler
+package ru.gb.notes.ui.recycler
 
 import ru.gb.notes.data.PopupMenuClick
 import androidx.recyclerview.widget.RecyclerView
@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.PopupMenu
 import ru.gb.notes.R
-import ru.gb.notes.data.Note
+import ru.gb.notes.domain.Note
 
 class NoteHolder(itemView: View, private val listener: PopupMenuClick) :
     RecyclerView.ViewHolder(itemView), PopupMenu.OnMenuItemClickListener {
@@ -58,7 +58,7 @@ class NoteHolder(itemView: View, private val listener: PopupMenuClick) :
         noteMenu = itemView.findViewById(R.id.note_menu)
         popupMenu = PopupMenu(itemView.context, noteMenu)
         popupMenu.inflate(R.menu.context)
-        noteMenu.setOnClickListener { v: View? -> popupMenu.show() }
+        noteMenu.setOnClickListener { popupMenu.show() }
         popupMenu.setOnMenuItemClickListener(this)
     }
 }

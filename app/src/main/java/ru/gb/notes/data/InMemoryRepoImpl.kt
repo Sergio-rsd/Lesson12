@@ -4,6 +4,8 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import ru.gb.notes.data.SharedPref.write
+import ru.gb.notes.domain.Note
+import ru.gb.notes.domain.Repo
 
 class InMemoryRepoImpl : Repo {
     private var notes = ArrayList<Note?>()

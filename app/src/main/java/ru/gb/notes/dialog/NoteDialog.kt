@@ -13,7 +13,7 @@ import android.widget.*
 import androidx.fragment.app.DialogFragment
 import ru.gb.notes.R
 import ru.gb.notes.data.InMemoryRepoImpl
-import ru.gb.notes.data.Note
+import ru.gb.notes.domain.Note
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -97,7 +97,7 @@ class NoteDialog : DialogFragment() {
         val dialogDescription = dialog.findViewById<EditText>(R.id.edit_note_description)
         dialogTitle.setText(title)
         dialogDescription.setText(description)
-        currentDateTime.setOnClickListener { v: View? -> setDate() }
+        currentDateTime.setOnClickListener { setDate() }
         val builder = AlertDialog.Builder(requireContext())
         val buttonText: String
         if (note == null) {
@@ -113,7 +113,7 @@ class NoteDialog : DialogFragment() {
         builder.setView(dialog)
             .setCancelable(true)
             .setNegativeButton("Cancel") { dialogInterface: DialogInterface, _: Int -> dialogInterface.cancel() }
-            .setPositiveButton(buttonText) { dialogInterface: DialogInterface, which: Int ->
+            .setPositiveButton(buttonText) { dialogInterface: DialogInterface, _: Int ->
                 if (note == null) {
                     interest = spinner.selectedItem.toString()
                     setInitialDate()

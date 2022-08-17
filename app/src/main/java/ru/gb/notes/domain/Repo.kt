@@ -1,4 +1,4 @@
-package ru.gb.notes.data
+package ru.gb.notes.domain
 
 interface Repo {
     // CRUD

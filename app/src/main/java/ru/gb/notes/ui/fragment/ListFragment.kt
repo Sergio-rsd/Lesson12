@@ -1,4 +1,4 @@
-package ru.gb.notes.fragment
+package ru.gb.notes.ui.fragment
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -13,10 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.gb.notes.R
 import ru.gb.notes.data.InMemoryRepoImpl
-import ru.gb.notes.data.Note
+import ru.gb.notes.domain.Note
 import ru.gb.notes.data.PopupMenuClick
-import ru.gb.notes.recycler.NoteHolder
-import ru.gb.notes.recycler.NotesAdapter
+import ru.gb.notes.ui.recycler.NoteHolder
+import ru.gb.notes.ui.recycler.NotesAdapter
 
 class ListFragment : Fragment() {
     private val repository = InMemoryRepoImpl.instance
@@ -106,8 +106,9 @@ class ListFragment : Fragment() {
         repository?.create(note)
         adapter.setNotes(repository?.all as List<Note>)
     }
-
+/*
     companion object {
         const val NOTES_SAVE = "NOTES_SAVE"
     }
+    */
 }

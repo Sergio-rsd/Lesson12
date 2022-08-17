@@ -9,13 +9,17 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import ru.gb.notes.R
-import ru.gb.notes.data.*
+import ru.gb.notes.data.InMemoryRepoImpl
+import ru.gb.notes.data.PopupMenuClick
+import ru.gb.notes.data.SharedPref
+import ru.gb.notes.dialog.YesNoDialogController
 import ru.gb.notes.dialog.NoteDialog
 import ru.gb.notes.dialog.NoteDialog.NoteDialogController
 import ru.gb.notes.dialog.YesNoDialog
-import ru.gb.notes.fragment.AboutFragment
-import ru.gb.notes.fragment.ListFragment
-import ru.gb.notes.fragment.ListFragment.RecyclerController
+import ru.gb.notes.domain.Note
+import ru.gb.notes.ui.fragment.AboutFragment
+import ru.gb.notes.ui.fragment.ListFragment
+import ru.gb.notes.ui.fragment.ListFragment.RecyclerController
 
 class MainActivity : AppCompatActivity(), YesNoDialogController, PopupMenuClick, RecyclerController,
     NoteDialogController {

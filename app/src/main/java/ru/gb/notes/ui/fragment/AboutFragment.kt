@@ -1,4 +1,4 @@
-package ru.gb.notes.fragment
+package ru.gb.notes.ui.fragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
